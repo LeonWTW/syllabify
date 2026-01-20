@@ -20,7 +20,11 @@ jobs:
           if [ -f backend/requirements.txt ]; then
             pip install -r backend/requirements.txt
           fi
-          pip install ruff pytest
+          if [ -f backend/requirements-dev.txt ]; then
+            pip install -r backend/requirements-dev.txt
+          else
+            pip install ruff pytest
+          fi
       - name: Run backend linter
         run: |
           if [ -d backend ] && [ -n "$(find backend -name '*.py' -type f 2>/dev/null)" ]; then
