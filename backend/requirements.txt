@@ -7,8 +7,9 @@ python-dotenv>=1.0.0
 sqlalchemy>=2.0.0
 pymysql>=1.1.0
 
-# Auth (JWT)
+# Auth (JWT, password hashing)
 pyjwt>=2.8.0
+bcrypt>=4.0.0
 
 # PDF / text (syllabus parsing)
 pypdf>=3.0.0

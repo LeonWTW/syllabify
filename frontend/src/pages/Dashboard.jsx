@@ -1,3 +1,7 @@
+/**
+ * Dashboard: weekly overview, upcoming assignments, course cards. Uses placeholder data.
+ * DISCLAIMER: Project structure may change. Functions may be added or modified.
+ */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
@@ -43,6 +47,7 @@ const MOCK_UPCOMING = [
   },
 ];
 
+/** Main dashboard. Shows placeholder weekly chart, upcoming list, and courses. */
 export default function Dashboard() {
   const [showPlaceholderModal, setShowPlaceholderModal] = useState(false);
 
@@ -51,6 +56,7 @@ export default function Dashboard() {
     if (!dismissed) setShowPlaceholderModal(true);
   }, []);
 
+  /** Dismisses placeholder notice and stores in sessionStorage. */
   const closePlaceholderModal = () => {
     sessionStorage.setItem(PLACEHOLDER_MODAL_KEY, '1');
     setShowPlaceholderModal(false);

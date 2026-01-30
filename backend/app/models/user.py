@@ -1,6 +1,9 @@
 # User ORM model.
 # TODO: SQLAlchemy model (3NF). id, email, password_hash, created_at, etc.
 #       Relationships to course, schedule. Use db.base, db.session.
+#
+# DISCLAIMER: Project structure may change. Fields/relationships may be added or
+# modified. This describes the general idea.
 
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship

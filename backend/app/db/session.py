@@ -1,6 +1,9 @@
 # DB connection.
 # TODO: Create SQLAlchemy engine from config (MySQL). Session factory,
 #       scoped_session. Use in dependencies, init_db.
+#
+# DISCLAIMER: Project structure may change. Config or functions may be added,
+# removed, or modified. This describes the general idea as of the current state.
 
 import os
 from sqlalchemy import create_engine

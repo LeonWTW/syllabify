@@ -1,11 +1,17 @@
+/**
+ * Upload PDF or paste syllabus text. Simulates parse (real API TODO). Calls onComplete with course name.
+ * DISCLAIMER: Project structure may change. Functions may be added or modified.
+ */
 import { useState } from 'react';
 
+/** Renders upload/paste form. onComplete(courseName) called when parse succeeds. */
 export default function SyllabusUpload({ onComplete }) {
   const [mode, setMode] = useState('file');
   const [file, setFile] = useState(null);
   const [paste, setPaste] = useState('');
   const [uploading, setUploading] = useState(false);
 
+  /** Handles form submit. Simulates API parse, then calls onComplete. */
   const handleSubmit = e => {
     e.preventDefault();
     setUploading(true);

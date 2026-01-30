@@ -1,7 +1,12 @@
+/**
+ * Login page. Validates credentials via AuthContext, redirects to Dashboard or SecuritySetup.
+ * DISCLAIMER: Project structure may change. Functions may be added or modified.
+ */
 import { useState } from 'react';
 import { useNavigate, Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
+/** Login form. Uses AuthContext.login, redirects based on security_setup_done. */
 export default function Login() {
   const { user, securitySetupDone, login } = useAuth();
   const navigate = useNavigate();
@@ -13,6 +18,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
+  /** Submits credentials, calls login, navigates on success. */
   const handleSubmit = async e => {
     e.preventDefault();
     setError('');

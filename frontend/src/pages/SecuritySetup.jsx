@@ -1,3 +1,7 @@
+/**
+ * One-time security questions setup. Requires auth. Calls completeSecuritySetup from AuthContext.
+ * DISCLAIMER: Project structure may change. Functions may be added or modified.
+ */
 import { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -7,6 +11,7 @@ const DEFAULT_QUESTIONS = [
   { question: '', answer: '' },
 ];
 
+/** Security setup form. Up to 5 Q&A pairs. Submits via AuthContext.completeSecuritySetup. */
 export default function SecuritySetup() {
   const { user, securitySetupDone, completeSecuritySetup } = useAuth();
   const navigate = useNavigate();
@@ -16,21 +21,25 @@ export default function SecuritySetup() {
   if (!user) return <Navigate to="/login" replace />;
   if (securitySetupDone) return <Navigate to="/" replace />;
 
+  /** Updates a single question or answer at index i. */
   const update = (i, field, value) => {
     const next = [...questions];
     next[i] = { ...next[i], [field]: value };
     setQuestions(next);
   };
 
+  /** Adds a new empty Q&A pair (max 5). */
   const addQuestion = () => {
     if (questions.length < 5)
       setQuestions([...questions, { question: '', answer: '' }]);
   };
 
+  /** Removes Q&A pair at index i. Keeps at least one. */
   const removeQuestion = i => {
     if (questions.length > 1) setQuestions(questions.filter((_, j) => j !== i));
   };
 
+  /** Validates, calls completeSecuritySetup, redirects to Dashboard on success. */
   const handleSubmit = async e => {
     e.preventDefault();
     setError('');

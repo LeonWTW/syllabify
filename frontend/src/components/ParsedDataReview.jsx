@@ -1,9 +1,15 @@
+/**
+ * Editable table of parsed assignments. User can edit name, due, hours and confirm.
+ * DISCLAIMER: Project structure may change. Functions may be added or modified.
+ */
 import { useState } from 'react';
 
+/** Inline-editable cell. Toggles between display and input on click. */
 function EditableCell({ value, onChange, type = 'text' }) {
   const [editing, setEditing] = useState(false);
   const [local, setLocal] = useState(value);
 
+  /** Saves edited value and exits edit mode. */
   const save = () => {
     onChange(local);
     setEditing(false);
@@ -33,12 +39,14 @@ function EditableCell({ value, onChange, type = 'text' }) {
   );
 }
 
+/** Table of assignments with editable cells. onAssignmentsChange updates list; onConfirm proceeds. */
 export default function ParsedDataReview({
   courseName,
   assignments,
   onAssignmentsChange,
   onConfirm,
 }) {
+  /** Updates one assignment field and notifies parent via onAssignmentsChange. */
   const updateAssignment = (id, field, value) => {
     onAssignmentsChange(
       assignments.map(a => (a.id === id ? { ...a, [field]: value } : a))

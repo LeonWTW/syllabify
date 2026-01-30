@@ -1,6 +1,7 @@
 /**
- * React entry point.
+ * React entry point. Renders App into DOM.
  * TODO: Wrap with Router, auth provider. Add routes for Dashboard, Upload, Login.
+ * DISCLAIMER: Project structure may change.
  */
 
 import React from 'react';

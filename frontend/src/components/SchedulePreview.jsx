@@ -1,3 +1,7 @@
+/**
+ * Weekly schedule grid (Mon–Sun, 24h). Renders time blocks. Uses mock data (real API TODO).
+ * DISCLAIMER: Project structure may change. Functions may be added or modified.
+ */
 const HOURS = 24;
 const DAYS = 7;
 const LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -69,6 +73,7 @@ const MOCK_BLOCKS = [
   },
 ];
 
+/** Renders a weekly schedule grid with time blocks. weekStart: Date for the week. */
 export default function SchedulePreview({ weekStart }) {
   const hourHeight = 48;
 

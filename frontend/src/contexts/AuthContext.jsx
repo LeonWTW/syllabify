@@ -1,3 +1,8 @@
+/**
+ * Auth state and actions. Provides login, logout, security setup.
+ * DISCLAIMER: Project structure may change. Functions may be added, removed, or
+ * modified. This describes the general idea as of the current state.
+ */
 import {
   createContext,
   useContext,
@@ -11,12 +16,14 @@ const TOKEN_KEY = 'syllabify_token';
 
 const AuthContext = createContext(null);
 
+/** Wraps the app to provide auth state. Loads user from token on mount. */
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
   const [securitySetupDone, setSecuritySetupDone] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
+  /** Fetches current user from API using token. Returns true if valid. */
   const loadUser = useCallback(async t => {
     const data = await api.me(t);
     if (data) {
@@ -45,6 +52,7 @@ export function AuthProvider({ children }) {
     });
   }, [loadUser]);
 
+  /** Calls API login, stores token, updates state. Returns { security_setup_done }. */
   const login = useCallback(async (username, password) => {
     const data = await api.login(username, password);
     const t = data.token;
@@ -55,6 +63,7 @@ export function AuthProvider({ children }) {
     return { security_setup_done: !!data.security_setup_done };
   }, []);
 
+  /** Clears token and user from storage and state. */
   const logout = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);
     setToken(null);
@@ -62,6 +71,7 @@ export function AuthProvider({ children }) {
     setSecuritySetupDone(true);
   }, []);
 
+  /** Sends security questions to API, marks setup complete. */
   const completeSecuritySetup = useCallback(
     async questions => {
       const t = token || localStorage.getItem(TOKEN_KEY);
@@ -85,6 +95,7 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+/** Hook to access auth state and actions. Must be used within AuthProvider. */
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error('useAuth must be used within AuthProvider');

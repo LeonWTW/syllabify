@@ -1,6 +1,7 @@
 /**
  * Preferences: work hours, preferred days, workload limits.
  * Simple controls (sliders, toggles). Future: theme, dark mode, per-course colors.
+ * DISCLAIMER: Project structure may change. Backend integration TODO.
  */
 export default function Preferences() {
   return (

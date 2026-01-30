@@ -1,3 +1,7 @@
+/**
+ * Upload page: multi-step flow (upload → review → confirm). Uses SyllabusUpload and ParsedDataReview.
+ * DISCLAIMER: Project structure may change. Components/steps may be added or modified.
+ */
 import { useState } from 'react';
 import SyllabusUpload from '../components/SyllabusUpload';
 import ParsedDataReview from '../components/ParsedDataReview';
@@ -14,6 +18,7 @@ const MOCK_ASSIGNMENTS = [
   { id: '3', name: 'Midterm', due: '2025-02-15', hours: 2 },
 ];
 
+/** Step-based upload flow. Manages step state, parsed course name, and assignments. */
 export default function Upload() {
   const [step, setStep] = useState(0);
   const [assignments, setAssignments] = useState(MOCK_ASSIGNMENTS);

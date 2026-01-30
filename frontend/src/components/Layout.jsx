@@ -1,3 +1,7 @@
+/**
+ * App shell: nav bar + main content. Requires auth; redirects to Login or SecuritySetup.
+ * DISCLAIMER: Project structure may change. Components may be added or modified.
+ */
 import { Outlet, NavLink, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -8,6 +12,7 @@ const navItems = [
   { to: '/preferences', label: 'Preferences' },
 ];
 
+/** Main layout with header nav and Outlet for child routes. */
 export default function Layout() {
   const { user, securitySetupDone, logout } = useAuth();
   if (!user) return <Navigate to="/login" replace />;

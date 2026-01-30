@@ -1,3 +1,8 @@
+/**
+ * Root app component. Sets up Router, AuthProvider, and routes.
+ * DISCLAIMER: Project structure may change. Components/routes may be added or
+ * modified. This describes the general idea as of the current state.
+ */
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout';
@@ -9,6 +14,7 @@ import Login from './pages/Login';
 import SecuritySetup from './pages/SecuritySetup';
 import './styles/index.css';
 
+/** Shown while auth is loading. */
 function Loading() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-surface">
@@ -17,6 +23,7 @@ function Loading() {
   );
 }
 
+/** Renders all routes. Waits for auth to load before showing content. */
 function AppRoutes() {
   const { isLoading } = useAuth();
   if (isLoading) return <Loading />;
@@ -35,6 +42,7 @@ function AppRoutes() {
   );
 }
 
+/** Root component: wraps app in Router and AuthProvider. */
 export default function App() {
   return (
     <BrowserRouter>

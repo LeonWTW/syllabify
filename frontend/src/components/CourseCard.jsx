@@ -1,5 +1,10 @@
+/**
+ * Card displaying course name, term, assignment count. Links to Schedule.
+ * DISCLAIMER: Project structure may change. Props/behavior may be modified.
+ */
 import { Link } from 'react-router-dom';
 
+/** Renders a single course card. Expects course: { name, term, assignmentCount }. */
 export default function CourseCard({ course }) {
   const { name, term, assignmentCount } = course;
   return (
