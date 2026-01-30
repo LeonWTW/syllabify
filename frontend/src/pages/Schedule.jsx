@@ -1,0 +1,23 @@
+import { useState } from 'react';
+import SchedulePreview from '../components/SchedulePreview';
+
+export default function Schedule() {
+  const [weekStart] = useState(() => {
+    const d = new Date();
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+    return new Date(d.setDate(diff));
+  });
+
+  return (
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-2xl font-semibold text-ink">Schedule</h1>
+        <p className="mt-1 text-sm text-ink-muted">
+          Weekly view of your study blocks. Conflicts are highlighted subtly.
+        </p>
+      </div>
+      <SchedulePreview weekStart={weekStart} />
+    </div>
+  );
+}
